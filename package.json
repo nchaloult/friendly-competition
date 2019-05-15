@@ -1,0 +1,15 @@
+{
+  "name": "friendly-competition",
+  "version": "0.1.0",
+  "description": "Compare your performance in your recent League of Legends games to that of your friends.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Nick Chaloult",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
