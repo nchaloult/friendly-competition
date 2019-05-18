@@ -18,7 +18,7 @@ app.get('/summoner', (req, res) => {
   }
 
   // Building API request URL to get summoner object
-  const summonerUrl = urls.summoner + 'tonyl' + urls.api;
+  const summonerUrl = urls.summoner + req.query.name + urls.api;
 
   axios.get(summonerUrl)
     .then(summonerObjRes => {
