@@ -25,14 +25,17 @@ app.get('/summoner', (req, res) => {
 //  });
 
   axios.get(summonerUrl)
-    .then(res => {
-      console.log(res.data);
+    .then(summonerObj => {
+      // Grab summoner's official name and account ID
+      const summonerName = summonerObj.name;
+      const accountId = summonerObj.accountId;
+
+      res.send('Done');
     })
     .catch(err => {
       console.log(err);
+      res.send('Error! Check console.');
     });
-
-  res.send('Closed');
 });
 
 app.listen(PORT, () => {
