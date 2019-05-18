@@ -12,9 +12,9 @@
   "author": "Nick Chaloult",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.4",
-    "nodemon": "^1.19.0",
-    "request": "^2.88.0"
+    "nodemon": "^1.19.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.0"
