@@ -36,15 +36,11 @@ app.get('/summoner', (req, res) => {
       let potentialFriends = new Map();
 
       // Fetch this player's recent match data, and keep track of potential friends
-      overallOutput.original = utils.getRecentMatchStats(summObj.accountId, potentialFriends, true);
+      overallOutput.original = utils.getRecentMatchStats(summObj.accountId, NUM_MATCHES, potentialFriends, true);
+      console.log('From server: ' + overallOutput.original);
 
-      // Building API request to get match list
-      const matchListReq = urls.matchList + summObj.accountId + urls.api + '&endIndex=' + NUM_MATCHES;
-      return axios.get(matchListReq);
-    })
-    .then(matchListRes => {
-      const matchListObj = matchListRes.data;
-      res.json(matchListObj);
+      // TODO: remove - this is for testing
+      res.json(overallOutput);
     })
     .catch(err => {
       console.log(err);
