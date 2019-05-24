@@ -14,6 +14,7 @@ const PORT = process.env.port || 3001;
 app.get('/summoner', (req, res) => {
   let overallOutput = {
     summName: null,
+    original: null,
     numMatches: NUM_MATCHES
   }
 
@@ -24,6 +25,17 @@ app.get('/summoner', (req, res) => {
     .then(summObjRes => {
       const summObj = summObjRes.data;
       overallOutput.summName = summObj.name;
+
+      /*
+       * Stores account IDs and player information about players that appear
+       * many times in the match history.
+       *
+       * Populated by getRecentMatchStats()
+       */
+      let potentialFriends = new Map();
+
+      // Fetch this player's recent match data, and keep track of potential friends
+      overallOutput.original = getRecentMatchStats(summObj.accountId, potentialFriends, true);
 
       // Building API request to get match list
       const matchListReq = urls.matchList + summObj.accountId + urls.api + '&endIndex=' + NUM_MATCHES;
