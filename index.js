@@ -1,5 +1,6 @@
 // File imports
 const urls = require('./urls');
+const utils = require('./utils');
 
 // Dependencies
 const express = require('express');
@@ -35,7 +36,7 @@ app.get('/summoner', (req, res) => {
       let potentialFriends = new Map();
 
       // Fetch this player's recent match data, and keep track of potential friends
-      overallOutput.original = getRecentMatchStats(summObj.accountId, potentialFriends, true);
+      overallOutput.original = utils.getRecentMatchStats(summObj.accountId, potentialFriends, true);
 
       // Building API request to get match list
       const matchListReq = urls.matchList + summObj.accountId + urls.api + '&endIndex=' + NUM_MATCHES;
