@@ -13,21 +13,21 @@ const PORT = process.env.port || 3001;
 
 app.get('/summoner', (req, res) => {
   let overallOutput = {
-    summonerName: null,
+    summName: null,
     numMatches: NUM_MATCHES
   }
 
-  // Building API request URL to get summoner object
-  const summonerUrl = urls.summoner + req.query.name + urls.api;
+  // Building API request to get summoner object
+  const summReq = urls.summoner + req.query.name + urls.api;
 
-  axios.get(summonerUrl)
-    .then(summonerObjRes => {
-      const sumObj = summonerObjRes.data;
-      overallOutput.summonerName = sumObj.name;
+  axios.get(summReq)
+    .then(summObjRes => {
+      const summObj = summObjRes.data;
+      overallOutput.summName = summObj.name;
 
-      // Building API request URL to get match list
-      const matchListUrl = urls.matchList + sumObj.accountId + urls.api + '&endIndex=' + NUM_MATCHES;
-      return axios.get(matchListUrl);
+      // Building API request to get match list
+      const matchListReq = urls.matchList + summObj.accountId + urls.api + '&endIndex=' + NUM_MATCHES;
+      return axios.get(matchListReq);
     })
     .then(matchListRes => {
       const matchListObj = matchListRes.data;
