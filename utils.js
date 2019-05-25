@@ -32,7 +32,9 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
         matchReqPromises.push(
           axios.get(matchReq)
             .then(matchRes => {
-              const participants = matchRes.data.participantIdentities;
+              const matchResObj = matchRes.data;
+
+              const participants = matchResObj.participantIdentities;
               let participantId = -1;
 
               // Find our summoner's participant ID
@@ -46,7 +48,7 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
               }
 
               // Gather our summoner's stats
-              const stats = matchRes.data.participants[participantId].stats;
+              const stats = matchResObj.participants[participantId].stats;
 
               if (stats.win) {
                 output.wins++;
