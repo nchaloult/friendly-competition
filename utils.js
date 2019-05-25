@@ -11,7 +11,7 @@ const axios = require('axios');
  * If findFriends is true, then keep track of how many times each player in all
  * recent games analyzed appears.
  */
-const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) => {
+const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) => new Promise(resolve => {
   let output = {
     gameIds: []
   };
@@ -29,13 +29,12 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
         output.gameIds.push(match.gameId);
       }
 
-      console.log('From getRecent: ' + output.gameIds);
-      return output.gameIds;
+      resolve(output.gameIds);
     })
     .catch(err => {
       // TODO: real error handling
       console.log(err);
     });
-};
+});
 
 module.exports.getRecentMatchStats = getRecentMatchStats;

@@ -36,11 +36,16 @@ app.get('/summoner', (req, res) => {
       let potentialFriends = new Map();
 
       // Fetch this player's recent match data, and keep track of potential friends
-      overallOutput.original = utils.getRecentMatchStats(summObj.accountId, NUM_MATCHES, potentialFriends, true);
-      console.log('From server: ' + overallOutput.original);
+      utils.getRecentMatchStats(summObj.accountId, NUM_MATCHES, potentialFriends, true)
+        .then(stats => {
+          overallOutput.original = stats;
 
-      // TODO: remove - this is for testing
-      res.json(overallOutput);
+          res.json(overallOutput);
+        })
+        .catch(err => {
+          console.log(err);
+          res.send('Error! Check console.');
+        });
     })
     .catch(err => {
       console.log(err);
