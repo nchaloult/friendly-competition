@@ -13,7 +13,16 @@ const axios = require('axios');
  */
 const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) => new Promise(resolve => {
   let output = {
-    wins: 0
+    wins: 0,
+    kills: [],
+    deaths: [],
+    assists: [],
+    cs: [],
+    goldEarned: [],
+    goldSpent: [],
+    gameTimes: [],
+    damageToChamps: [],
+    wardsPlaced: []
   };
 
   // Building API request to get recent match list
@@ -53,15 +62,22 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
               if (stats.win) {
                 output.wins++;
               }
-
-              // TODO: gather more stats about our summoner's performance
+              output.kills.push(stats.kills);
+              output.deaths.push(stats.deaths);
+              output.assists.push(stats.assists);
+              output.cs.push(stats.totalMinionsKilled);
+              output.goldEarned.push(stats.goldEarned);
+              output.goldSpent.push(stats.goldSpent);
+              output.gameTimes.push(matchResObj.gameDuration);
+              output.damageToChamps.push(stats.totalDamageDealtToChampions);
+              output.wardsPlaced.push(stats.wardsPlaced);
             })
         );
       }
 
+      // After you've gathered info from all recent matches, return that info
       Promise.all(matchReqPromises)
         .then(() => {
-          // After you've gathered info from all recent matches, return that info
           resolve(output);
         });
     })
