@@ -7,7 +7,7 @@ const express = require('express');
 const axios = require('axios');
 
 // Number of previous matches to fetch stats from
-const NUM_MATCHES = 2;
+const NUM_MATCHES = 10;
 
 const app = express();
 const PORT = process.env.port || 3001;
