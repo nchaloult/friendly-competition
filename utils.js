@@ -13,7 +13,7 @@ const axios = require('axios');
  */
 const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) => new Promise(resolve => {
   let output = {
-    gameIds: []
+    wins: 0
   };
 
   // Building API request to get recent match list
@@ -26,26 +26,41 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
 
       // Iterate through the list of recent matches, and store info about each match
       for (match of matchListObj.matches) {
-        // TODO: remove - this is for testing
-        output.gameIds.push(match.gameId);
-
         // Building API request to get stats from a particular recent match
         const matchReq = urls.match + match.gameId + urls.api;
 
-        matchRequestPromises.push(
+        matchReqPromises.push(
           axios.get(matchReq)
             .then(matchRes => {
-              // Do what you want with this match's info
+              const participants = matchRes.data.participantIdentities;
+              let participantId = -1;
+
+              // Find our summoner's participant ID
+              for (let i = 0; i < participants.length; i++) {
+                const curPlayer = participants[i].player;
+
+                if (participantId == -1 && curPlayer.currentAccountId == accId) {
+                  participantId = i;
+                  break;
+                }
+              }
+
+              // Gather our summoner's stats
+              const stats = matchRes.data.participants[participantId].stats;
+
+              if (stats.win) {
+                output.wins++;
+              }
+
+              // TODO: gather more stats about our summoner's performance
             })
         );
       }
 
       Promise.all(matchReqPromises)
         .then(() => {
-          // After you've gathered info from all recent matches
-
-          // TODO: probably uncomment and keep this
-          // resolve(output);
+          // After you've gathered info from all recent matches, return that info
+          resolve(output);
         });
     })
     .catch(err => {
