@@ -22,6 +22,7 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
   axios.get(matchListReq)
     .then(matchListRes => {
       const matchListObj = matchListRes.data;
+      let matchReqPromises = [];
 
       // Iterate through the list of recent matches, and store info about each match
       for (match of matchListObj.matches) {
@@ -31,18 +32,21 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
         // Building API request to get stats from a particular recent match
         const matchReq = urls.match + match.gameId + urls.api;
 
-        /*
-         * TODO: Need some way to store all of these promises so that you can
-         * do Promise.all() on them or something. Otherwise, while data is
-         * being gathered from each of the recent matches, line 45 will resolve
-         * and return an incomplete output.
-         */
-        axios.get(matchReq)
-          .then(matchRes => {
-          });
+        matchRequestPromises.push(
+          axios.get(matchReq)
+            .then(matchRes => {
+              // Do what you want with this match's info
+            })
+        );
       }
 
-      resolve(output.gameIds);
+      Promise.all(matchReqPromises)
+        .then(() => {
+          // After you've gathered info from all recent matches
+
+          // TODO: probably uncomment and keep this
+          // resolve(output);
+        });
     })
     .catch(err => {
       // TODO: real error handling
