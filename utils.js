@@ -72,6 +72,10 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
               output.damageToChamps.push(stats.totalDamageDealtToChampions);
               output.wardsPlaced.push(stats.wardsPlaced);
             })
+            .catch(err => {
+              // TODO: real error handling
+              console.log(err);
+            })
         );
       }
 
@@ -79,6 +83,10 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
       Promise.all(matchReqPromises)
         .then(() => {
           resolve(output);
+        })
+        .catch(err => {
+          // TODO: real error handling
+          console.log(err);
         });
     })
     .catch(err => {
