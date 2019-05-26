@@ -38,7 +38,7 @@ app.get('/summoner', (req, res) => {
       // Fetch this player's recent match data, and keep track of potential friends
       utils.getRecentMatchStats(summObj.accountId, NUM_MATCHES, potentialFriends, true)
         .then(stats => {
-          overallOutput.original = stats;
+          overallOutput.stats = stats;
 
           res.json(overallOutput);
         })
