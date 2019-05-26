@@ -37,7 +37,8 @@ app.get('/summoner', (req, res) => {
       utils.getRecentMatchStats(summObj.accountId, NUM_MATCHES, potentialFriends, true)
         .then(stats => {
           overallOutput.stats = stats;
-          console.log(potentialFriends);
+          const friends = utils.find3Friends(potentialFriends);
+          console.log(friends);
 
           res.json(overallOutput);
         })

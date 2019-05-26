@@ -9,7 +9,9 @@ const axios = require('axios');
  * recent matches.
  *
  * If findFriends is true, then keep track of how many times each player in all
- * recent games analyzed appears.
+ * recent games analyzed appears. potentialFriends stores account IDs as keys
+ * and JSON objects with summoner names and the number of appearances in recent
+ * matches as values.
  */
 const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) => new Promise(resolve => {
   let output = {
@@ -122,4 +124,54 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
     });
 });
 
+/*
+ * Given a map of summoners and the number of times that they appear in recent
+ * matches, finds the three summoners that appear the most often in those
+ * recent matches.
+ */
+const find3Friends = (potentialFriends) => {
+  // top3Counts remains sorted at all times
+  let top3Counts = [0, 0, 0];
+  let friends = [null, null, null];
+
+  for (let [accId, summ] of potentialFriends) {
+    /*
+     * If the current summoner's count is greater than the smallest count that
+     * we are storing, then we've found a new potential friend.
+     */
+    if (summ.count > top3Counts[0]) {
+      const name = summ.name;
+      const newPotentialFriend = { name, accId };
+
+      if (summ.count > top3Counts[2]) {
+        top3Counts.push(summ.count);
+        top3Counts.shift();
+
+        friends.push(newPotentialFriend);
+        friends.shift();
+      } else if (summ.count > top3Counts[1]) {
+        top3Counts.splice(2, 0, summ.count);
+        top3Counts.shift();
+
+        friends.splice(2, 0, newPotentialFriend);
+        friends.shift();
+      } else {
+        top3Counts.shift();
+        top3Counts.unshift(summ.count);
+
+        friends.shift();
+        friends.unshift(newPotentialFriend);
+      }
+    }
+  }
+
+  // Adding respective counts to each friend object
+  friends[0]['count'] = top3Counts[0];
+  friends[1]['count'] = top3Counts[1];
+  friends[2]['count'] = top3Counts[2];
+
+  return friends;
+};
+
 module.exports.getRecentMatchStats = getRecentMatchStats;
+module.exports.find3Friends = find3Friends;
