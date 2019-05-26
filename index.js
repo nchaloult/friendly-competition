@@ -47,8 +47,8 @@ app.get('/summoner', (req, res) => {
           // Queue up promises to fetch friends' recent match stats
           friendsPromises.push(
             utils.getRecentMatchStats(friends[0].accId, NUM_MATCHES, potentialFriends, false)
-              .then(friend1Stats => {
-                overallOutput.friend1Stats = friend1Stats;
+              .then(friend3Stats => {
+                overallOutput.friend3Stats = friend3Stats;
               })
               .catch(err => {
                 // TODO: real error handling
@@ -69,8 +69,8 @@ app.get('/summoner', (req, res) => {
           );
           friendsPromises.push(
             utils.getRecentMatchStats(friends[2].accId, NUM_MATCHES, potentialFriends, false)
-              .then(friend3Stats => {
-                overallOutput.friend3Stats = friend3Stats;
+              .then(friend1Stats => {
+                overallOutput.friend1Stats = friend1Stats;
               })
               .catch(err => {
                 // TODO: real error handling
@@ -83,9 +83,9 @@ app.get('/summoner', (req, res) => {
           Promise.all(friendsPromises)
             .then(() => {
               // Add "recent game appearance count" to each friend
-              overallOutput.friend1Stats.count = friends[0].count;
+              overallOutput.friend1Stats.count = friends[2].count;
               overallOutput.friend2Stats.count = friends[1].count;
-              overallOutput.friend3Stats.count = friends[2].count;
+              overallOutput.friend3Stats.count = friends[0].count;
 
               res.json(overallOutput);
             })
