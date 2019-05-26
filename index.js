@@ -82,6 +82,11 @@ app.get('/summoner', (req, res) => {
           // Once stats from friends have been gathered, return overallOutput
           Promise.all(friendsPromises)
             .then(() => {
+              // Add "recent game appearance count" to each friend
+              overallOutput.friend1Stats.count = friends[0].count;
+              overallOutput.friend2Stats.count = friends[1].count;
+              overallOutput.friend3Stats.count = friends[2].count;
+
               res.json(overallOutput);
             })
             .catch(err => {
