@@ -15,7 +15,7 @@ const PORT = process.env.port || 3001;
 app.get('/summoner', (req, res) => {
   let overallOutput = {
     summName: null,
-    original: null,
+    stats: null,
     numMatches: NUM_MATCHES
   }
 

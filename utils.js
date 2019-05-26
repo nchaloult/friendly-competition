@@ -13,6 +13,7 @@ const axios = require('axios');
  */
 const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) => new Promise(resolve => {
   let output = {
+    summName: null,
     wins: 0,
     kills: [],
     deaths: [],
@@ -52,6 +53,7 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
 
                 if (participantId == -1 && curPlayer.currentAccountId == accId) {
                   participantId = i;
+                  output.summName = curPlayer.summonerName;
                   break;
                 }
               }
