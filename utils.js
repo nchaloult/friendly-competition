@@ -54,7 +54,32 @@ const getRecentMatchStats = (accId, numMatches, potentialFriends, findFriends) =
                 if (participantId == -1 && curPlayer.currentAccountId == accId) {
                   participantId = i;
                   output.summName = curPlayer.summonerName;
-                  break;
+
+                  /*
+                   * If we aren't keeping track of potential friends, then
+                   * we've found what we're looking for.
+                   */
+                  if (!findFriends) {
+                    break;
+                  }
+                } else if (findFriends) {
+                  // Otherwise, keep track of each player in every recent match
+
+                  /*
+                   * If we have seen the current player before, fetch the
+                   * number of recent matches that this player has appeared in.
+                   */
+                  const curFriend = potentialFriends.get(curPlayer.currentAccountId);
+                  let curCount = 0;
+                  if (curFriend != undefined) {
+                    curCount = curFriend.count;
+                  }
+
+                  /*
+                   * Set (or increase) the current player's "recent match
+                   * appearance count."
+                   */
+                  potentialFriends.set(curPlayer.currentAccountId, { name: curPlayer.summonerName, count: curCount + 1 });
                 }
               }
 

@@ -14,9 +14,8 @@ const PORT = process.env.port || 3001;
 
 app.get('/summoner', (req, res) => {
   let overallOutput = {
-    summName: null,
-    stats: null,
-    numMatches: NUM_MATCHES
+    numMatches: NUM_MATCHES,
+    stats: null
   }
 
   // Building API request to get summoner object
@@ -25,7 +24,6 @@ app.get('/summoner', (req, res) => {
   axios.get(summReq)
     .then(summObjRes => {
       const summObj = summObjRes.data;
-      overallOutput.summName = summObj.name;
 
       /*
        * Stores account IDs and player information about players that appear
@@ -39,6 +37,7 @@ app.get('/summoner', (req, res) => {
       utils.getRecentMatchStats(summObj.accountId, NUM_MATCHES, potentialFriends, true)
         .then(stats => {
           overallOutput.stats = stats;
+          console.log(potentialFriends);
 
           res.json(overallOutput);
         })
