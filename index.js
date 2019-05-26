@@ -15,7 +15,10 @@ const PORT = process.env.port || 3001;
 app.get('/summoner', (req, res) => {
   let overallOutput = {
     numMatches: NUM_MATCHES,
-    stats: null
+    playerStats: null,
+    friend1Stats: null,
+    friend2Stats: null,
+    friend3Stats: null
   }
 
   // Building API request to get summoner object
@@ -35,19 +38,66 @@ app.get('/summoner', (req, res) => {
 
       // Fetch this player's recent match data, and keep track of potential friends
       utils.getRecentMatchStats(summObj.accountId, NUM_MATCHES, potentialFriends, true)
-        .then(stats => {
-          overallOutput.stats = stats;
-          const friends = utils.find3Friends(potentialFriends);
-          console.log(friends);
+        .then(playerStats => {
+          overallOutput.playerStats = playerStats;
 
-          res.json(overallOutput);
+          const friends = utils.find3Friends(potentialFriends);
+          let friendsPromises = [];
+
+          // Queue up promises to fetch friends' recent match stats
+          friendsPromises.push(
+            utils.getRecentMatchStats(friends[0].accId, NUM_MATCHES, potentialFriends, false)
+              .then(friend1Stats => {
+                overallOutput.friend1Stats = friend1Stats;
+              })
+              .catch(err => {
+                // TODO: real error handling
+                console.log(err);
+                res.send('Error! Check console.');
+              })
+          );
+          friendsPromises.push(
+            utils.getRecentMatchStats(friends[1].accId, NUM_MATCHES, potentialFriends, false)
+              .then(friend2Stats => {
+                overallOutput.friend2Stats = friend2Stats;
+              })
+              .catch(err => {
+                // TODO: real error handling
+                console.log(err);
+                res.send('Error! Check console.');
+              })
+          );
+          friendsPromises.push(
+            utils.getRecentMatchStats(friends[2].accId, NUM_MATCHES, potentialFriends, false)
+              .then(friend3Stats => {
+                overallOutput.friend3Stats = friend3Stats;
+              })
+              .catch(err => {
+                // TODO: real error handling
+                console.log(err);
+                res.send('Error! Check console.');
+              })
+          );
+
+          // Once stats from friends have been gathered, return overallOutput
+          Promise.all(friendsPromises)
+            .then(() => {
+              res.json(overallOutput);
+            })
+            .catch(err => {
+              // TODO: real error handling
+              console.log(err);
+              res.send('Error! Check console.');
+            });
         })
         .catch(err => {
+          // TODO: real error handling
           console.log(err);
           res.send('Error! Check console.');
         });
     })
     .catch(err => {
+      // TODO: real error handling
       console.log(err);
       res.send('Error! Check console.');
     });
@@ -56,4 +106,3 @@ app.get('/summoner', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}....`);
 });
-
