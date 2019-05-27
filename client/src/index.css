@@ -17,13 +17,12 @@ h1 {
   text-align: center;
 }
 
-a, a:visited {
-  color: #fdce03;
-  text-decoration: none;
+p {
+  color: #b3c3d3;
 }
 
-a:hover {
-  text-decoration: underline;
+a, a:hover, a:visited {
+  color: #fdce03;
 }
 
 form {
@@ -82,8 +81,8 @@ input[type="submit"]:active {
 
 /* ============ Card Styles ============ */
 
-.card {
-  margin: 1rem 0rem;
+.myCard {
+  margin: 1rem;
   padding: 2rem;
   width: 100%;
 

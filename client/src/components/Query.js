@@ -3,7 +3,7 @@ import '../index.css';
 
 function Query() {
   return (
-    <div className="card">
+    <div className="myCard">
       <div className="row">
         <div className="col">
           <h1>Friendly Competition</h1>

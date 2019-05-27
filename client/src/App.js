@@ -2,6 +2,7 @@ import React from 'react';
 import './index.css';
 
 import Query from './components/Query';
+import About from './components/About';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
 
       <div className="container">
         <Query />
+        <About />
       </div>
       <footer>
         <div className="container">
