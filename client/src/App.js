@@ -1,12 +1,14 @@
 import React from 'react';
 import './index.css';
 
+import Query from './components/Query';
+
 function App() {
   return (
     <div>
 
       <div className="container">
-        <h1>Friendly Competition</h1>
+        <Query />
       </div>
       <footer>
         <div className="container">
