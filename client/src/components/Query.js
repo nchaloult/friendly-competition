@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../index.css';
 
-function Query() {
+function Query(props) {
+  const [input, setInput] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Sanitize input
+    props.onSubmit(input.trim().toLowerCase());
+
+    // Clear text box contents
+    setInput('');
+  };
+
   return (
     <div className="myCard">
       <div className="row">
@@ -11,8 +23,13 @@ function Query() {
       </div>
       <div className="row">
         <div className="col">
-          <form>
-            <input type="text" placeholder="Summoner name" />
+          <form onSubmit={ event => { handleSubmit(event) } }>
+            <input
+              type="text"
+              value={ input }
+              onChange={ event => setInput(event.target.value) }
+              placeholder="Summoner name"
+            />
             <input type="submit" value="Go" />
           </form>
         </div>
