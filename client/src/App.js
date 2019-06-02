@@ -6,7 +6,7 @@ import About from './components/About';
 import Loading from './components/Loading';
 import Footer from './components/Footer';
 
-function App() {
+export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
@@ -62,5 +62,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

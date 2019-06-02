@@ -1,7 +1,7 @@
 import React from 'react';
 import '../resources/index.css';
 
-function About() {
+export default function About() {
   return (
     <div className="myCard" style={{ 'display': 'flex', 'justifyContent': 'center' }}>
       <div style={{ 'width': '80%' }}>
@@ -22,5 +22,3 @@ function About() {
     </div>
   );
 }
-
-export default About;

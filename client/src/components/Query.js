@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../resources/index.css';
 
-function Query(props) {
+export default function Query(props) {
   const [input, setInput] = useState('');
 
   const handleSubmit = (event) => {
@@ -40,5 +40,3 @@ function Query(props) {
     </div>
   );
 }
-
-export default Query;
