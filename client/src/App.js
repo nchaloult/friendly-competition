@@ -6,7 +6,7 @@ import About from './components/About';
 
 function App() {
   const [hasSearched, setHasSearched] = useState(false);
-  const [data, setData] = useState({ "default": "testing" });
+  const [data, setData] = useState(null);
 
   const makeAPICall = (summName) => {
     fetch(`/summoner?name=${summName}`)

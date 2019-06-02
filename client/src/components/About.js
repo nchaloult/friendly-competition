@@ -4,7 +4,7 @@ import '../index.css';
 function About() {
   return (
     <div className="myCard" style={{ 'display': 'flex', 'justifyContent': 'center' }}>
-      <div style={{ 'width': '70%' }}>
+      <div style={{ 'width': '80%' }}>
         <h2>What Is It?</h2>
         <p>
           Friendly Competition is different than services like OP.GG. Instead of
