@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './index.css';
 
 import Query from './components/Query';
@@ -7,21 +6,28 @@ import About from './components/About';
 
 function App() {
   const [hasSearched, setHasSearched] = useState(false);
-  const [summName, setSummName] = useState('tonyl');
-  const [data, setData] = useState({});
+  const [data, setData] = useState({ "default": "testing" });
 
-  useEffect(() => {
-    alert(`About to make the API call for ${summName}`);
-    axios.get(`/summoner?name=${summName}`)
+  const makeAPICall = (summName) => {
+    fetch(`/summoner?name=${summName}`)
       .then(res => {
+        // If the response code is 200
+        if (res.ok) {
+          return res.json();
+        } else {
+          // TODO: real error handling
+          alert(`Error code ${res.status}`);
+        }
+      })
+      .then(resJson => {
+        setData(resJson);
         setHasSearched(true);
-        setData(res);
       })
       .catch(err => {
         // TODO: real error handling
-        console.log(err);
+        alert(`Error: ${err}`);
       });
-  }, [summName]);
+  };
 
   // Initializing what content to display based on the state of the app
   let content = null;
@@ -35,7 +41,7 @@ function App() {
     <div>
 
       <div className="container">
-        <Query onSubmit={ setSummName } />
+        <Query onSubmit={ makeAPICall } />
         { content }
       </div>
       <footer>
