@@ -4,6 +4,7 @@ import './resources/index.css';
 import Query from './components/Query';
 import About from './components/About';
 import Loading from './components/Loading';
+import Footer from './components/Footer';
 
 function App() {
   const [hasSearched, setHasSearched] = useState(false);
@@ -56,16 +57,7 @@ function App() {
         <Query onSubmit={ makeAPICall } />
         { content }
       </div>
-      <footer>
-        <div className="container">
-          <p>
-            Friendly Competition compares a League of Legends player's recent in-game performance with that of their friends.
-          </p>
-          <p><em>
-            Built by <a href="https://github.com/nchaloult">Nick Chaloult</a> in 2019
-          </em></p>
-        </div>
-      </footer>
+      <Footer />
 
     </div>
   );
