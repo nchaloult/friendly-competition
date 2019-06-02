@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../index.css';
+import '../resources/index.css';
 
 function Query(props) {
   const [input, setInput] = useState('');
@@ -7,10 +7,14 @@ function Query(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    /*
+     * TODO: Perform more input sanitizations (look for characters that Riot
+     * doesn't allow in summoner names, etc.)
+     */
     // Sanitize input
     props.onSubmit(input.trim().toLowerCase());
 
-    // Clear text box contents
+    // Clear input box contents
     setInput('');
   };
 
@@ -26,7 +30,6 @@ function Query(props) {
           <form onSubmit={ event => { handleSubmit(event) } }>
             <input
               type="text"
-              value={ input }
               onChange={ event => setInput(event.target.value) }
               placeholder="Summoner name"
             />

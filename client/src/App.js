@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import './index.css';
+import './resources/index.css';
 
 import Query from './components/Query';
 import About from './components/About';
+import Loading from './components/Loading';
 
 function App() {
   const [hasSearched, setHasSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
 
   const makeAPICall = (summName) => {
+    setHasSearched(true);
+    setIsLoading(true);
+
     fetch(`/summoner?name=${summName}`)
       .then(res => {
         // If the response code is 200
@@ -21,7 +26,7 @@ function App() {
       })
       .then(resJson => {
         setData(resJson);
-        setHasSearched(true);
+        setIsLoading(false);
       })
       .catch(err => {
         // TODO: real error handling
@@ -29,10 +34,17 @@ function App() {
       });
   };
 
-  // Initializing what content to display based on the state of the app
+  /*
+   * Initializing what content to display based on the state of the app
+   * (has the user submitted the form, are we waiting for Promises to be
+   * resolved, etc.)
+   */
   let content = null;
+
   if (!hasSearched) {
     content = <About />;
+  } else if (isLoading || !isLoading) {
+    content = <Loading />;
   } else {
     content = ( <p>{ JSON.stringify(data) }</p> );
   }
@@ -46,10 +58,12 @@ function App() {
       </div>
       <footer>
         <div className="container">
-          <p><em>
+          <p>
             Friendly Competition compares a League of Legends player's recent in-game performance with that of their friends.
+          </p>
+          <p><em>
+            Built by <a href="https://github.com/nchaloult">Nick Chaloult</a> in 2019
           </em></p>
-          <p>Built by <a href="https://github.com/nchaloult">Nick Chaloult</a> in 2019</p>
         </div>
       </footer>
 
