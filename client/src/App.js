@@ -6,6 +6,8 @@ import About from './components/About';
 import Loading from './components/Loading';
 import Footer from './components/Footer';
 
+import Summary from './components/Summary';
+
 export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,10 +46,19 @@ export default function App() {
 
   if (!hasSearched) {
     content = <About />;
-  } else if (isLoading || !isLoading) {
+  } else if (isLoading) {
     content = <Loading />;
   } else {
-    content = ( <p>{ JSON.stringify(data) }</p> );
+    content = (
+      <div>
+        <Summary
+          summName={ data.playerStats.summName }
+          wins={ data.playerStats.wins }
+          numMatches={ data.numMatches }
+        />
+        <p>{ JSON.stringify(data) }</p>
+      </div>
+    );
   }
 
   return (
