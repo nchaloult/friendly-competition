@@ -73,18 +73,6 @@ export default function App() {
         <Query onSubmit={ makeAPICall } />
         { content }
       </div>
-      <p>
-        Remember! Do not share any of your API keys with anyone. They are tied to your League of Legends account and are used for your applications. If someone gets access to your key, they can use it for their own purposes. This not only poses a risk to your application but also the Riot Games API as a whole. Protect your key so that you can continue to make awesome stuff!
-We are making some changes to the league-v4 API. We are deprecating three methods, adding two methods, and making some small quality of life improvements. We'll be removing the deprecated methods from the API in 60 days on Monday, June 17th, 2019.
-      </p>
-      <p>
-        Remember! Do not share any of your API keys with anyone. They are tied to your League of Legends account and are used for your applications. If someone gets access to your key, they can use it for their own purposes. This not only poses a risk to your application but also the Riot Games API as a whole. Protect your key so that you can continue to make awesome stuff!
-We are making some changes to the league-v4 API. We are deprecating three methods, adding two methods, and making some small quality of life improvements. We'll be removing the deprecated methods from the API in 60 days on Monday, June 17th, 2019.
-      </p>
-      <p>
-        Remember! Do not share any of your API keys with anyone. They are tied to your League of Legends account and are used for your applications. If someone gets access to your key, they can use it for their own purposes. This not only poses a risk to your application but also the Riot Games API as a whole. Protect your key so that you can continue to make awesome stuff!
-We are making some changes to the league-v4 API. We are deprecating three methods, adding two methods, and making some small quality of life improvements. We'll be removing the deprecated methods from the API in 60 days on Monday, June 17th, 2019.
-      </p>
       <Footer />
 
     </div>
