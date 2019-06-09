@@ -11,7 +11,7 @@ body {
   background: #9aa2b2;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: 'Montserrat';
 }
 
@@ -21,7 +21,11 @@ h1 {
   text-align: center;
 }
 
-p {
+h4 {
+  margin-bottom: 0;
+}
+
+p, .hilite {
   color: #b3c3d3;
 }
 

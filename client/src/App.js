@@ -55,6 +55,7 @@ export default function App() {
           summName={ data.playerStats.summName }
           wins={ data.playerStats.wins }
           numMatches={ data.numMatches }
+          friend1SummName={ data.friend1Stats.summName }
         />
         <p>{ JSON.stringify(data) }</p>
       </div>
