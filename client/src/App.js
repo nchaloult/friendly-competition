@@ -62,7 +62,6 @@ export default function App() {
           friend3SummName={ data.friend3Stats.summName }
           friend3Wins={ data.friend3Stats.wins }
         />
-        <p>{ JSON.stringify(data) }</p>
       </div>
     );
   }
