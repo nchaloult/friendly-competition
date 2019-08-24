@@ -53,21 +53,37 @@ export default function App() {
       <div>
         <Summary
           numMatches={ data.numMatches }
+
           summName={ data.playerStats.summName }
           wins={ data.playerStats.wins }
           cs={ data.playerStats.cs }
+          kills={ data.playerStats.kills }
+          deaths={ data.playerStats.deaths }
+          assists={ data.playerStats.assists }
+
           friend1SummName={ data.friend1Stats.summName }
           friend1Count={ data.friend1Stats.count }
           friend1Wins={ data.friend1Stats.wins }
           friend1CS={ data.friend1Stats.cs }
+          friend1Kills={ data.friend1Stats.kills }
+          friend1Deaths={ data.friend1Stats.deaths }
+          friend1Assists={ data.friend1Stats.assists }
+
           friend2SummName={ data.friend2Stats.summName }
           friend2Count={ data.friend2Stats.count }
           friend2Wins={ data.friend2Stats.wins }
           friend2CS={ data.friend2Stats.cs }
+          friend2Kills={ data.friend2Stats.kills }
+          friend2Deaths={ data.friend2Stats.deaths }
+          friend2Assists={ data.friend2Stats.assists }
+
           friend3SummName={ data.friend3Stats.summName }
           friend3Count={ data.friend3Stats.count }
           friend3Wins={ data.friend3Stats.wins }
           friend3CS={ data.friend3Stats.cs }
+          friend3Kills={ data.friend3Stats.kills }
+          friend3Deaths={ data.friend3Stats.deaths }
+          friend3Assists={ data.friend3Stats.assists }
         />
       </div>
     );

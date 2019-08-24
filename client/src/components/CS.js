@@ -34,6 +34,7 @@ export default function CS(props) {
     }]
   };
   const csChartOptions = {
+    maintainAspectRatio: false,
     responsive: true,
     legend: {
       display: false
@@ -66,7 +67,9 @@ export default function CS(props) {
   return (
     <div>
       <h2>CS</h2>
-      <HorizontalBar data={ csChartData } options={ csChartOptions } />
+      <div>
+        <HorizontalBar data={ csChartData } options={ csChartOptions } />
+      </div>
     </div>
   );
 }
