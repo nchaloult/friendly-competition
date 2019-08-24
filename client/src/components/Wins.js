@@ -12,10 +12,30 @@ export default function Wins(props) {
 
   orderedWins.sort((a, b) => parseInt(b.charAt(0)) - parseInt(a.charAt(0)));
 
+  // Initialize wins pie chart
+  const WinChart = require('react-chartjs').Pie;
+  const winChartData = [
+    {
+      value: props.wins,
+      color: '#b3c3d3',
+      highlight: '#b3c3d3',
+      label: 'Wins'
+    },
+    {
+      value: props.numMatches - props.wins,
+      color: '#414959',
+      highlight: '#414959',
+      label: 'Losses'
+    }
+  ];
+  const winChartOptions = {
+    segmentShowStroke: false
+  };
+
   return (
     <div>
       <div className="row" style={{ "display": "flex", "justifyContent": "center" }}>
-        <div style={{ "background": "#fdce03", "margin": "1rem 0rem", "width": "16vw", "height": "16vw", "borderRadius": "100%" }}>&nbsp;</div>
+        <WinChart style={{ 'margin': '0.5rem 0rem' }} data={ winChartData } options={ winChartOptions } width="200" height="200" />
       </div>
       <div className="row" style={{ "textAlign": "center" }}>
         <div className="col">
