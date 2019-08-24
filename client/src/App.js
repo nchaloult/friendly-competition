@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import './resources/index.css';
 
 import Query from './components/Query';
-import About from './components/About';
+import About from './components/landingPage/About';
 import Loading from './components/Loading';
 import Footer from './components/Footer';
 
-import Summary from './components/Summary';
+import Summary from './components/summaryCard/Summary';
 
 export default function App() {
   const [hasSearched, setHasSearched] = useState(false);

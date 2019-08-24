@@ -1,6 +1,6 @@
 import React from 'react';
 import { HorizontalBar } from 'react-chartjs-2'
-import '../resources/index.css';
+import '../../resources/index.css';
 
 // findAverage computes the average of all the items in the provided list
 function findAverage(list) {

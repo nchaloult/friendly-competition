@@ -1,6 +1,6 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2'
-import '../resources/index.css';
+import '../../resources/index.css';
 
 export default function Wins(props) {
   // Sort each player's wins in reverse numerical order

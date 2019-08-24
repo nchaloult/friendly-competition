@@ -1,5 +1,5 @@
 import React from 'react';
-import '../resources/index.css';
+import '../../resources/index.css';
 
 export default function About() {
   return (

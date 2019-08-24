@@ -1,5 +1,5 @@
 import React from 'react';
-import '../resources/index.css';
+import '../../resources/index.css';
 
 import NameAndFriends from './NameAndFriends';
 import Wins from './Wins';

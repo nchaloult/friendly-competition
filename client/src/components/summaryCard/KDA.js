@@ -1,6 +1,6 @@
 import React from 'react';
 import { HorizontalBar } from 'react-chartjs-2'
-import '../resources/index.css';
+import '../../resources/index.css';
 
 // calculateKDA finds the KDA of one player for one game
 function calculateKDA(kills, deaths, assists) {
