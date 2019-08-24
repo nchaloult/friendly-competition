@@ -5,7 +5,11 @@ export default function NameAndFriends(props) {
   return (
     <div className="row">
       <div className="col-4">
-        <h2>Highlighting Stats<br />For <span className="hilite">{ props.summName }</span></h2>
+        <h2>
+          <span className="hilite">{ props.summName }</span>'s
+          <br />
+          Highlighting Stats
+        </h2>
       </div>
       <div className="col-8">
         <div className="row">
