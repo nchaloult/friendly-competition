@@ -80,7 +80,6 @@ export default function GameTimes(props) {
           // Round to the nearest multiple of 30
           min: Math.round( (Math.min(...averageTimes) - 30) / 30.0 ) * 30,
           max: Math.round( (Math.max(...averageTimes) + 30) / 30.0 ) * 30,
-          stepSize: 30,
           fontColor: "#b3c3d3"
         },
         gridLines: {

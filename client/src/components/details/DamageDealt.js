@@ -65,7 +65,6 @@ export default function DamageDealt(props) {
           // Round to the nearest multiple of 2000
           min: Math.round( (Math.min(...averageDamages) - 2000) / 2000.0 ) * 2000,
           max: Math.round( (Math.max(...averageDamages) + 2000) / 2000.0 ) * 2000,
-          stepSize: 2000,
           fontColor: "#b3c3d3"
         },
         gridLines: {
