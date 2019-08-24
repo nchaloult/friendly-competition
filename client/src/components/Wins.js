@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pie } from 'react-chartjs-2'
+import { Doughnut } from 'react-chartjs-2'
 import '../resources/index.css';
 
 export default function Wins(props) {
@@ -13,7 +13,7 @@ export default function Wins(props) {
 
   orderedWins.sort((a, b) => parseInt(b.charAt(0)) - parseInt(a.charAt(0)));
 
-  // Prep info for wins pie chart
+  // Prep info for wins doughnut chart
   const winChartData = {
     labels: [ 'Wins', 'Losses' ],
     datasets: [{
@@ -33,7 +33,7 @@ export default function Wins(props) {
   return (
     <div>
       <h2>Wins</h2>
-      <Pie data={ winChartData } options={ winChartOptions } />
+      <Doughnut data={ winChartData } options={ winChartOptions } />
       <ol>
       {
         orderedWins.map(entry => {
