@@ -52,18 +52,22 @@ export default function App() {
     content = (
       <div>
         <Summary
+          numMatches={ data.numMatches }
           summName={ data.playerStats.summName }
           wins={ data.playerStats.wins }
-          numMatches={ data.numMatches }
+          cs={ data.playerStats.cs }
           friend1SummName={ data.friend1Stats.summName }
-          friend1Wins={ data.friend1Stats.wins }
           friend1Count={ data.friend1Stats.count }
+          friend1Wins={ data.friend1Stats.wins }
+          friend1CS={ data.friend1Stats.cs }
           friend2SummName={ data.friend2Stats.summName }
-          friend2Wins={ data.friend2Stats.wins }
           friend2Count={ data.friend2Stats.count }
+          friend2Wins={ data.friend2Stats.wins }
+          friend2CS={ data.friend2Stats.cs }
           friend3SummName={ data.friend3Stats.summName }
-          friend3Wins={ data.friend3Stats.wins }
           friend3Count={ data.friend3Stats.count }
+          friend3Wins={ data.friend3Stats.wins }
+          friend3CS={ data.friend3Stats.cs }
         />
       </div>
     );
