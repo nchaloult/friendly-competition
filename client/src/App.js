@@ -11,6 +11,7 @@ import Summary from './components/summaryCard/Summary';
 import GameTimes from './components/details/GameTimes';
 import DamageDealt from './components/details/DamageDealt';
 import WardsPlaced from './components/details/WardsPlaced';
+import GoldInfo from './components/details/GoldInfo';
 
 export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
@@ -132,6 +133,22 @@ export default function App() {
 
               friend3SummName={ data.friend3Stats.summName }
               friend3Damage={ data.friend3Stats.damageToChamps }
+            />
+            <GoldInfo
+              spent={ data.playerStats.goldSpent }
+              earned={ data.playerStats.goldEarned }
+
+              friend1SummName={ data.friend1Stats.summName }
+              friend1Spent={ data.friend1Stats.goldSpent }
+              friend1Earned={ data.friend1Stats.goldEarned }
+
+              friend2SummName={ data.friend2Stats.summName }
+              friend2Spent={ data.friend2Stats.goldSpent }
+              friend2Earned={ data.friend2Stats.goldEarned }
+
+              friend3SummName={ data.friend3Stats.summName }
+              friend3Spent={ data.friend3Stats.goldSpent }
+              friend3Earned={ data.friend3Stats.goldEarned }
             />
           </div>
         </div>
