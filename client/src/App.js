@@ -10,6 +10,7 @@ import Summary from './components/summaryCard/Summary';
 
 import GameTimes from './components/details/GameTimes';
 import DamageDealt from './components/details/DamageDealt';
+import WardsPlaced from './components/details/WardsPlaced';
 
 export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
@@ -105,6 +106,18 @@ export default function App() {
 
               friend3SummName={ data.friend3Stats.summName }
               friend3Times={ data.friend3Stats.gameTimes }
+            />
+            <WardsPlaced
+              wardsPlaced={ data.playerStats.wardsPlaced }
+
+              friend1SummName={ data.friend1Stats.summName }
+              friend1WardsPlaced={ data.friend1Stats.wardsPlaced }
+
+              friend2SummName={ data.friend2Stats.summName }
+              friend2WardsPlaced={ data.friend2Stats.wardsPlaced }
+
+              friend3SummName={ data.friend3Stats.summName }
+              friend3WardsPlaced={ data.friend3Stats.wardsPlaced }
             />
           </div>
           <div className="col">
