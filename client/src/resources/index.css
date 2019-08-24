@@ -19,12 +19,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #fff;
+  color: #b3c3d3;
   background: #9aa2b2;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Montserrat';
+  color: #fff;
 }
 
 h1 {
@@ -37,8 +38,8 @@ h4 {
   margin-bottom: 0;
 }
 
-p, .hilite {
-  color: #b3c3d3;
+.hilite {
+  color: #fdce03;
 }
 
 a, a:hover, a:visited {

@@ -18,11 +18,21 @@ export default function Wins(props) {
         <div style={{ "background": "#fdce03", "margin": "1rem 0rem", "width": "16vw", "height": "16vw", "borderRadius": "100%" }}>&nbsp;</div>
       </div>
       <div className="row" style={{ "textAlign": "center" }}>
-        <h3>{ props.wins } / { props.numMatches } Wins</h3>
+        <div className="col">
+          <h3>{ props.wins } / { props.numMatches } Wins</h3>
+        </div>
       </div>
       <div className="row">
         <ul>
-        { orderedWins.map(entry => (<li>{ entry }</li>)) }
+        {
+          orderedWins.map(entry => {
+            if (entry.slice(-3) === "You") {
+              return <li className="hilite">{ entry }</li>;
+            }
+
+            return <li>{ entry }</li>;
+          })
+        }
         </ul>
       </div>
     </div>
