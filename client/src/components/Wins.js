@@ -32,7 +32,7 @@ export default function Wins(props) {
 
   return (
     <div>
-      <h2>Wins</h2>
+      <h2>Win Rate</h2>
       <Doughnut data={ winChartData } options={ winChartOptions } />
       <ol>
       {

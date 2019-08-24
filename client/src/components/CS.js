@@ -66,7 +66,7 @@ export default function CS(props) {
   // HorizontalBar component must be in its own div for auto-resizing to behave
   return (
     <div>
-      <h2>CS</h2>
+      <h2>Average CS per Game</h2>
       <div>
         <HorizontalBar data={ csChartData } options={ csChartOptions } />
       </div>

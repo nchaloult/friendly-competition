@@ -83,7 +83,7 @@ export default function KDA(props) {
   // HorizontalBar component must be in its own div for auto-resizing to behave
   return (
     <div>
-      <h2>KDA</h2>
+      <h2>Average KDA per Game</h2>
       <div>
         <HorizontalBar data={ kdaChartData } options={ kdaChartOptions } />
       </div>
