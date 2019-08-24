@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Summary from './components/summaryCard/Summary';
 
 import GameTimes from './components/details/GameTimes';
+import DamageDealt from './components/details/DamageDealt';
 
 export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
@@ -104,6 +105,20 @@ export default function App() {
 
               friend3SummName={ data.friend3Stats.summName }
               friend3Times={ data.friend3Stats.gameTimes }
+            />
+          </div>
+          <div className="col">
+            <DamageDealt
+              damage={ data.playerStats.damageToChamps }
+
+              friend1SummName={ data.friend1Stats.summName }
+              friend1Damage={ data.friend1Stats.damageToChamps }
+
+              friend2SummName={ data.friend2Stats.summName }
+              friend2Damage={ data.friend2Stats.damageToChamps }
+
+              friend3SummName={ data.friend3Stats.summName }
+              friend3Damage={ data.friend3Stats.damageToChamps }
             />
           </div>
         </div>
