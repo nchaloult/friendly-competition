@@ -1,4 +1,5 @@
 import React from 'react';
+import { Pie } from 'react-chartjs-2'
 import '../resources/index.css';
 
 export default function Wins(props) {
@@ -12,49 +13,39 @@ export default function Wins(props) {
 
   orderedWins.sort((a, b) => parseInt(b.charAt(0)) - parseInt(a.charAt(0)));
 
-  // Initialize wins pie chart
-  const WinChart = require('react-chartjs').Pie;
-  const winChartData = [
-    {
-      value: props.wins,
-      color: '#b3c3d3',
-      highlight: '#b3c3d3',
-      label: 'Wins'
-    },
-    {
-      value: props.numMatches - props.wins,
-      color: '#414959',
-      highlight: '#414959',
-      label: 'Losses'
-    }
-  ];
+  // Prep info for wins pie chart
+  const winChartData = {
+    labels: [ 'Wins', 'Losses' ],
+    datasets: [{
+      data: [props.wins, props.numMatches - props.wins],
+      backgroundColor: ['#b3c3d3', '#414959'],
+      hoverBackgroundColor: ['#b3c3d3', '#414959'],
+      borderWidth: 0
+    }]
+  };
   const winChartOptions = {
-    segmentShowStroke: false
+    responsive: true,
+    legend: {
+      display: false
+    }
   };
 
   return (
     <div>
-      <div className="row" style={{ "display": "flex", "justifyContent": "center" }}>
-        <WinChart style={{ 'margin': '0.5rem 0rem' }} data={ winChartData } options={ winChartOptions } width="200" height="200" />
-      </div>
-      <div className="row" style={{ "textAlign": "center" }}>
-        <div className="col">
-          <h3>{ props.wins } / { props.numMatches } Wins</h3>
-        </div>
-      </div>
-      <div className="row">
-        <ul>
-        {
-          orderedWins.map(entry => {
-            if (entry.slice(-3) === "You") {
-              return <li className="hilite">{ entry }</li>;
-            }
+      <h2>Wins</h2>
+      <Pie data={ winChartData } options={ winChartOptions } />
+      <ol>
+      {
+        orderedWins.map(entry => {
+          // Highlight the searched summoner's wins in the list
+          if (entry.slice(-3) === "You") {
+            return <li className="hilite">{ entry }</li>;
+          }
 
-            return <li>{ entry }</li>;
-          })
-        }
-        </ul>
-      </div>
+          return <li>{ entry }</li>;
+        })
+      }
+      </ol>
     </div>
   );
 }
