@@ -10,6 +10,11 @@ export default function Summary(props) {
       <NameAndFriends
         summName={ props.summName }
         friend1SummName={ props.friend1SummName }
+        friend1Count={ props.friend1Count }
+        friend2SummName={ props.friend2SummName }
+        friend2Count={ props.friend2Count }
+        friend3SummName={ props.friend3SummName }
+        friend3Count={ props.friend3Count }
       />
       <div className="row">
         <div className="col-4">

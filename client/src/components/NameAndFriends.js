@@ -11,15 +11,15 @@ export default function NameAndFriends(props) {
         <div className="row">
           <div className="col-4" style={{"textAlign": "center"}}>
             <h4>{ props.friend1SummName }</h4>
-            <p>played in<br />3 / 10 games</p>
+            <p>played in<br />{ props.friend1Count } / 10 games</p>
           </div>
           <div className="col-4" style={{"textAlign": "center"}}>
-            <h4>Friend 1</h4>
-            <p>played in<br />3 / 10 games</p>
+            <h4>{ props.friend2SummName }</h4>
+            <p>played in<br />{ props.friend2Count } / 10 games</p>
           </div>
           <div className="col-4" style={{"textAlign": "center"}}>
-            <h4>Friend 1</h4>
-            <p>played in<br />3 / 10 games</p>
+            <h4>{ props.friend3SummName }</h4>
+            <p>played in<br />{ props.friend3Count } / 10 games</p>
           </div>
         </div>
       </div>

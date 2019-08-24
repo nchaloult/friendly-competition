@@ -57,10 +57,13 @@ export default function App() {
           numMatches={ data.numMatches }
           friend1SummName={ data.friend1Stats.summName }
           friend1Wins={ data.friend1Stats.wins }
+          friend1Count={ data.friend1Stats.count }
           friend2SummName={ data.friend2Stats.summName }
           friend2Wins={ data.friend2Stats.wins }
+          friend2Count={ data.friend2Stats.count }
           friend3SummName={ data.friend3Stats.summName }
           friend3Wins={ data.friend3Stats.wins }
+          friend3Count={ data.friend3Stats.count }
         />
       </div>
     );
