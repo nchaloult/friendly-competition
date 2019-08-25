@@ -3,6 +3,7 @@ import '../resources/index.css';
 
 export default function Query(props) {
   const [input, setInput] = useState('');
+  const [warning, setWarning] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,11 +13,30 @@ export default function Query(props) {
      * doesn't allow in summoner names, etc.)
      */
     // Sanitize input
-    props.onSubmit(input.trim().toLowerCase());
+    const trimmedInput = input.trim().toLowerCase();
 
-    // Clear input box contents
+    if (trimmedInput === '') {
+      setWarning('Summoner name can\'t be blank.');
+    } else {
+      setWarning('');
+
+      props.onSubmit(trimmedInput);
+    }
+
+    // Clear input box contents after pressing "Go"
     setInput('');
   };
+
+  // Initializing what warning content to display, if any, based on user input
+  let warningContent = null;
+
+  if (warning !== '') {
+    warningContent = (
+      <div style={{ 'textAlign': 'center', 'marginTop': '0.5rem' }}>
+        <p style={{ 'margin': '0', 'color': '#e53935' }}>{ warning }</p>
+      </div>
+    );
+  }
 
   return (
     <div className="myCard">
@@ -35,6 +55,11 @@ export default function Query(props) {
             />
             <input type="submit" value="Go" />
           </form>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          { warningContent }
         </div>
       </div>
     </div>
