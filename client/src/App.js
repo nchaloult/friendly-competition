@@ -3,8 +3,9 @@ import './resources/index.css';
 
 import Query from './components/Query';
 import About from './components/landingPage/About';
-import Loading from './components/Loading';
 import Footer from './components/Footer';
+import Loading from './components/Loading';
+import Error from './components/Error';
 
 import Summary from './components/summaryCard/Summary';
 
@@ -16,6 +17,7 @@ import GoldInfo from './components/details/GoldInfo';
 export default function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [statusCode, setStatusCode] = useState(200);
   const [data, setData] = useState(null);
 
   const makeAPICall = (summName) => {
@@ -24,28 +26,28 @@ export default function App() {
 
     fetch(`/summoner?name=${summName}`)
       .then(res => {
-        // If the response code is 200
-        if (res.ok) {
-          return res.json();
-        } else {
-          // TODO: real error handling
-          alert(`Error code ${res.status}`);
+        if (!res.ok) {
+          throw res;
+          // Continue handling the error in the catch() statement below
         }
+
+        setStatusCode(res.status);
+        return res.json();
       })
       .then(resJson => {
         setData(resJson);
         setIsLoading(false);
       })
       .catch(err => {
-        // TODO: real error handling
-        alert(`Error: ${err}`);
+        setStatusCode(err.status);
+        setIsLoading(false);
       });
   };
 
   /*
    * Initializing what content to display based on the state of the app
    * (has the user submitted the form, are we waiting for Promises to be
-   * resolved, etc.)
+   * resolved, did our response have a non-200 status code, etc.)
    */
   let content = null;
 
@@ -53,6 +55,8 @@ export default function App() {
     content = <About />;
   } else if (isLoading) {
     content = <Loading />;
+  } else if (statusCode !== 200) {
+    content = <Error statusCode={ statusCode } />;
   } else {
     content = (
       <div>
