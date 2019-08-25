@@ -1,8 +1,9 @@
 # Friendly Competition
 
-Live at [friendly-competition.herokuapp.com](https://friendly-competition.herokuapp.com/)
-
 Compares a League of Legends player's recent in-game performance with that of their friends.
+
+Live at [friendly-competition.herokuapp.com](https://friendly-competition.herokuapp.com/)\
+Or to build and view locally, follow instructions in the [Build Locally](#Build-Locally) section.
 
 ## What Is It?
 
@@ -13,6 +14,28 @@ Friendly Competition is different than services like OP.GG. Instead of only disp
 ## How It Works
 
 Friendly Competition looks at your 10 most recent games (whether they are ranked, normals, ARAM, or anything else) and compares your performance to 3 other players who appear the most often in those games.
+
+# Build Locally
+
+Follow these steps to build locally and see what the front-end looks like when populated with info.
+
+1. `git clone -b mocked-data --single-branch https://github.com/nchaloult/friendly-competition.git`
+1. `cd friendly-competition`
+1. Create a `urls.js` file in the `friendly-competition/` dir
+    * That file doesn't exist in the repo because the real one contains secrets (yes, I should look into putting those secrets in environment variables on my production environment, instead)
+    * Copy and paste the following into your `urls.js`:
+    ```
+    module.exports = {
+      summoner: 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/',
+      matchList: 'https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/',
+      match: 'https://na1.api.riotgames.com/lol/match/v4/matches/'
+    }
+    ```
+1. `npm i`
+1. `cd client && npm i`
+1. `cd .. && npm run dev`
+
+Your default browser should open and be directed to: localhost:3000. Type anything in the "summoner name" box, and press "Go."
 
 # To-Do List
 
