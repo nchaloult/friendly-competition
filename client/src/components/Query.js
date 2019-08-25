@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import '../resources/index.css';
 
+// escapeRegExp escapes potentially dangerous characters.
+//
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
 export default function Query(props) {
   const [input, setInput] = useState('');
   const [warning, setWarning] = useState('');
@@ -8,19 +15,17 @@ export default function Query(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    /*
-     * TODO: Perform more input sanitizations (look for characters that Riot
-     * doesn't allow in summoner names, etc.)
-     */
     // Sanitize input
-    const trimmedInput = input.trim().toLowerCase();
+    const sanitizedInput = escapeRegExp(input.trim().toLowerCase());
 
-    if (trimmedInput === '') {
+    if (sanitizedInput === '') {
       setWarning('Summoner name can\'t be blank.');
+    } else if (sanitizedInput.length < 3 || sanitizedInput.length > 16) {
+      setWarning('Valid summoner names are between 3 and 16 characters.');
     } else {
+      // All clear
       setWarning('');
-
-      props.onSubmit(trimmedInput);
+      props.onSubmit(sanitizedInput);
     }
 
     // Clear input box contents after pressing "Go"
