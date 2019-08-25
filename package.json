@@ -12,11 +12,11 @@
   "author": "Nick Chaloult",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "express": "^4.16.4",
-    "nodemon": "^1.19.0"
+    "axios": ">=0.18.1",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.2"
   }
 }
