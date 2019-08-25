@@ -9,7 +9,7 @@ Or to build and view locally, follow instructions in the [Build Locally](#Build-
 
 Friendly Competition is different than services like OP.GG. Instead of only displaying stats from your recent League games, it shows how you stack up against people that you play with.
 
-![Highlighting stats page](https://user-images.githubusercontent.com/31291920/50731968-2f41d980-113e-11e9-9eb1-b0e6056ed204.PNG)
+![Highlighting stats page](https://user-images.githubusercontent.com/31291920/63657421-c57b4c00-c76f-11e9-9e7b-af44acbc8247.png)
 
 ## How It Works
 
