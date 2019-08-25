@@ -5,12 +5,15 @@ const utils = require('./utils');
 // Dependencies
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 
 // Number of previous matches to fetch stats from
 const NUM_MATCHES = 10;
 
+// Run on port 3001 in dev; run on whatever port Heroku decides on in prod
+const PORT = process.env.PORT || 3001;
+
 const app = express();
-const PORT = process.env.port || 3001;
 
 app.get('/summoner', (req, res) => {
   let overallOutput = {
@@ -107,6 +110,17 @@ app.get('/summoner', (req, res) => {
       res.send('Error! Check console.');
     });
 });
+
+// Prod environment config
+if (process.env.NODE_ENV === 'production') {
+  // Serve the optimized, built static files from create-react-app
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  // Route every route not handled above to the optimized static home page
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}....`);
