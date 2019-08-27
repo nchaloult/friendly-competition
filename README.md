@@ -2,7 +2,7 @@
 
 Compares a League of Legends player's recent in-game performance with that of their friends.
 
-Live at [friendly-competition.herokuapp.com](https://friendly-competition.herokuapp.com/)\
+Live at [friendly-competition.herokuapp.com](https://friendly-competition.herokuapp.com/) (probably... not closely monitored 😬)\
 Or to build and view locally, follow instructions in the [Build Locally](#Build-Locally) section.
 
 ## What Is It?
